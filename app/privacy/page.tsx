@@ -68,8 +68,8 @@ export default function Privacy() {
                   </li>
                   <li>
                     Information about your device and internet connection,
-                    including your device's unique device identifier, IP
-                    address, operating system, and browser type
+                    including your device unique device identifier, IP address,
+                    operating system, and browser type
                   </li>
                 </ul>
               </section>
@@ -119,7 +119,7 @@ export default function Privacy() {
                 </h2>
                 <p>
                   We may update our privacy policy from time to time. If we make
-                  material changes to how we treat our users' personal
+                  material changes to how we treat our user personal
                   information, we will post the new privacy policy on this page.
                   The date the privacy policy was last revised is identified at
                   the top of the page. You are responsible for periodically

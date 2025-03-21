@@ -17,7 +17,7 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 
 export default function Home() {
-  const [scrollY, setScrollY] = useState(0);
+  const [, setScrollY] = useState(0);
 
   useEffect(() => {
     const handleScroll = () => {
