@@ -11,10 +11,5 @@
   "observability": {
     "enabled": true,
   },
-  "routes": [
-    {
-      "pattern": "syedconsult.com",
-      "custom_domain": true,
-    },
-  ],
+  "routes": [],
 }
