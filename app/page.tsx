@@ -97,12 +97,13 @@ export default function Home() {
                 transition={{ duration: 0.7 }}
               >
                 <h1 className="text-5xl font-bold leading-tight text-slate-900">
-                  Next-Generation Voice AI Technology
+                  Next-Generation Voice AI Solutions
                 </h1>
                 <p className="text-xl text-slate-700">
-                  Transforming customer experiences through innovative voice
-                  intelligence solutions powered by advanced speech recognition
-                  and language models.
+                  From WebRTC, to SIP Trunking, to Speech Recognition, we
+                  provide a comprehensive suite of voice AI solutions that
+                  enhance customer interactions and streamline business
+                  operations.
                 </p>
                 <div className="flex gap-4 pt-4">
                   <Button size="lg" className="px-6">
@@ -354,159 +355,6 @@ export default function Home() {
     </div>
   );
 }
-const initialNodes = [
-  {
-    id: "1",
-    type: "custom",
-    position: { x: 250, y: 0 },
-    data: {
-      label: "SIP Trunking",
-      description: "Call routing & signaling",
-      icon: <Phone className="h-5 w-5 text-primary" />,
-    },
-    style: { opacity: 0, transform: "translateY(-20px)" },
-  },
-  {
-    id: "2",
-    type: "custom",
-    position: { x: 100, y: 150 },
-    data: {
-      label: "FreeSWITCH",
-      description: "Voice processing",
-      icon: <Server className="h-5 w-5 text-primary" />,
-    },
-    style: { opacity: 0, transform: "translateX(-20px)" },
-  },
-  {
-    id: "3",
-    type: "custom",
-    position: { x: 400, y: 150 },
-    data: {
-      label: "Speech Recognition",
-      description: "Audio to text",
-      icon: <Mic className="h-5 w-5 text-primary" />,
-    },
-    style: { opacity: 0, transform: "translateX(20px)" },
-  },
-  {
-    id: "4",
-    type: "custom",
-    position: { x: 100, y: 300 },
-    data: {
-      label: "Knowledge Base",
-      description: "Domain-specific data",
-      icon: <Database className="h-5 w-5 text-primary" />,
-    },
-    style: { opacity: 0, transform: "translateX(-20px)" },
-  },
-  {
-    id: "5",
-    type: "custom",
-    position: { x: 400, y: 300 },
-    data: {
-      label: "Large Language Model",
-      description: "Conversation intelligence",
-      icon: <MessageSquare className="h-5 w-5 text-primary" />,
-    },
-    style: { opacity: 0, transform: "translateX(20px)" },
-  },
-  {
-    id: "6",
-    type: "custom",
-    position: { x: 250, y: 450 },
-    data: {
-      label: "Voice Assistant",
-      description: "Customer interaction",
-      icon: <Bot className="h-5 w-5 text-primary" />,
-    },
-    style: { opacity: 0, transform: "translateY(20px)" },
-  },
-];
-
-const initialEdges = [
-  {
-    id: "e1-2",
-    source: "1",
-    target: "2",
-    animated: true,
-    style: {
-      stroke: "#6366f1",
-      strokeWidth: 2,
-      opacity: 0,
-    },
-    type: "smoothstep",
-  },
-  {
-    id: "e1-3",
-    source: "1",
-    target: "3",
-    animated: true,
-    style: {
-      stroke: "#6366f1",
-      strokeWidth: 2,
-      opacity: 0,
-    },
-    type: "smoothstep",
-  },
-  {
-    id: "e2-4",
-    source: "2",
-    target: "4",
-    style: {
-      stroke: "#6366f1",
-      strokeWidth: 2,
-      opacity: 0,
-    },
-    type: "smoothstep",
-  },
-  {
-    id: "e3-5",
-    source: "3",
-    target: "5",
-    style: {
-      stroke: "#6366f1",
-      strokeWidth: 2,
-      opacity: 0,
-    },
-    type: "smoothstep",
-  },
-  {
-    id: "e4-5",
-    source: "4",
-    target: "5",
-    style: {
-      stroke: "#6366f1",
-      strokeWidth: 2,
-      opacity: 0,
-    },
-    type: "smoothstep",
-  },
-  {
-    id: "e5-6",
-    source: "5",
-    target: "6",
-    animated: true,
-    style: {
-      stroke: "#6366f1",
-      strokeWidth: 2,
-      opacity: 0,
-    },
-    type: "smoothstep",
-  },
-  {
-    id: "e2-6",
-    source: "2",
-    target: "6",
-    animated: true,
-    style: {
-      stroke: "#6366f1",
-      strokeWidth: 2,
-      opacity: 0,
-    },
-    type: "smoothstep",
-  },
-];
-
 const CustomNode = ({ data }: any) => {
   return (
     <div className="bg-white rounded-lg shadow-lg p-4 border-2 border-primary/30 min-w-[180px] hover:shadow-xl transition-all duration-300 hover:border-primary/60">
@@ -524,11 +372,124 @@ const CustomNode = ({ data }: any) => {
     </div>
   );
 };
-
 function Flow() {
   const nodeTypes = {
     custom: CustomNode,
   };
+
+  // Define the nodes with voice AI components
+  const initialNodes = [
+    {
+      id: "1",
+      type: "custom",
+      position: { x: 250, y: 0 },
+      data: {
+        label: "SIP Trunking",
+        description: "Call routing & signaling",
+        icon: <Phone className="h-5 w-5 text-primary" />,
+      },
+    },
+    {
+      id: "2",
+      type: "custom",
+      position: { x: 100, y: 150 },
+      data: {
+        label: "FreeSWITCH",
+        description: "Voice processing",
+        icon: <Server className="h-5 w-5 text-primary" />,
+      },
+    },
+    {
+      id: "3",
+      type: "custom",
+      position: { x: 400, y: 150 },
+      data: {
+        label: "Speech Recognition",
+        description: "Audio to text",
+        icon: <Mic className="h-5 w-5 text-primary" />,
+      },
+    },
+    {
+      id: "4",
+      type: "custom",
+      position: { x: 100, y: 300 },
+      data: {
+        label: "Knowledge Base",
+        description: "Domain-specific data",
+        icon: <Database className="h-5 w-5 text-primary" />,
+      },
+    },
+    {
+      id: "5",
+      type: "custom",
+      position: { x: 400, y: 300 },
+      data: {
+        label: "Large Language Model",
+        description: "Conversation intelligence",
+        icon: <MessageSquare className="h-5 w-5 text-primary" />,
+      },
+    },
+    {
+      id: "6",
+      type: "custom",
+      position: { x: 250, y: 450 },
+      data: {
+        label: "Voice Assistant",
+        description: "Customer interaction",
+        icon: <Bot className="h-5 w-5 text-primary" />,
+      },
+    },
+  ];
+
+  // Define the connections between nodes
+  const initialEdges = [
+    {
+      id: "e1-2",
+      source: "1",
+      target: "2",
+      animated: true,
+      style: { stroke: "#6366f1", strokeWidth: 2 },
+    },
+    {
+      id: "e1-3",
+      source: "1",
+      target: "3",
+      animated: true,
+      style: { stroke: "#6366f1", strokeWidth: 2 },
+    },
+    {
+      id: "e2-4",
+      source: "2",
+      target: "4",
+      style: { stroke: "#6366f1", strokeWidth: 2 },
+    },
+    {
+      id: "e3-5",
+      source: "3",
+      target: "5",
+      style: { stroke: "#6366f1", strokeWidth: 2 },
+    },
+    {
+      id: "e4-5",
+      source: "4",
+      target: "5",
+      style: { stroke: "#6366f1", strokeWidth: 2 },
+    },
+    {
+      id: "e5-6",
+      source: "5",
+      target: "6",
+      animated: true,
+      style: { stroke: "#6366f1", strokeWidth: 2 },
+    },
+    {
+      id: "e2-6",
+      source: "2",
+      target: "6",
+      animated: true,
+      style: { stroke: "#6366f1", strokeWidth: 2 },
+    },
+  ];
 
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
@@ -538,88 +499,27 @@ function Flow() {
     [setEdges],
   );
 
-  // Enhanced animation sequence for nodes and edges
+  // Add animation to nodes on mount
   useEffect(() => {
-    // Animate nodes sequentially
-    const nodeTimers = initialNodes.map((_, index) => {
-      return setTimeout(
-        () => {
-          setNodes((nds) =>
-            nds.map((n, i) => {
-              if (i === index) {
-                return {
-                  ...n,
-                  style: {
-                    ...n.style,
-                    opacity: 1,
-                    transform: "translate(0,0)",
-                    transition: "all 0.8s ease-out",
-                  },
-                };
-              }
-              return n;
-            }),
-          );
-        },
-        300 + index * 200,
-      ); // Staggered delay
-    });
+    const timer = setTimeout(() => {
+      setNodes((nds) =>
+        nds.map((node) => ({
+          ...node,
+          position: {
+            ...node.position,
+          },
+          data: {
+            ...node.data,
+          },
+        })),
+      );
+    }, 100);
 
-    // Animate edges with delay after nodes start appearing
-    const edgeTimers = initialEdges.map((_, index) => {
-      return setTimeout(
-        () => {
-          setEdges((eds) =>
-            eds.map((e, i) => {
-              if (i === index) {
-                return {
-                  ...e,
-                  style: {
-                    ...e.style,
-                    opacity: 1,
-                    transition: "opacity 0.6s ease-in",
-                  },
-                };
-              }
-              return e;
-            }),
-          );
-        },
-        800 + index * 150,
-      ); // Start after nodes begin appearing
-    });
-
-    // Pulse animation for nodes after everything is displayed
-    const pulseTimer = setTimeout(() => {
-      const interval = setInterval(() => {
-        setNodes((nds) =>
-          nds.map((node) => ({
-            ...node,
-            style: {
-              ...node.style,
-              boxShadow:
-                (node.style as any).boxShadow ===
-                "0 0 10px rgba(99, 102, 241, 0.7)"
-                  ? "none"
-                  : "0 0 10px rgba(99, 102, 241, 0.7)",
-              transition: "box-shadow 1s ease-in-out",
-            },
-          })),
-        );
-      }, 2000);
-
-      return () => clearInterval(interval);
-    }, 2500);
-
-    return () => {
-      nodeTimers.forEach(clearTimeout);
-      edgeTimers.forEach(clearTimeout);
-      clearTimeout(pulseTimer);
-    };
-  }, [setNodes, setEdges]);
+    return () => clearTimeout(timer);
+  }, [setNodes]);
 
   return (
-    <div className="h-[500px] w-full border rounded-xl overflow-hidden bg-slate-50 shadow-lg">
+    <div className="h-[500px] w-full border rounded-xl overflow-hidden bg-slate-50">
       <ReactFlow
         nodes={nodes}
         edges={edges}
@@ -628,12 +528,10 @@ function Flow() {
         onConnect={onConnect}
         nodeTypes={nodeTypes}
         fitView
-        minZoom={0.5}
-        maxZoom={1.5}
         attributionPosition="bottom-right"
         proOptions={{ hideAttribution: true }}
       >
-        <Background color="#ddd" gap={16} size={1} />
+        <Background color="#ddd" gap={16} />
       </ReactFlow>
     </div>
   );
