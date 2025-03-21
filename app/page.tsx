@@ -1,7 +1,19 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useCallback } from "react";
+
 import {
+  ReactFlow,
+  Background,
+  useNodesState,
+  useEdgesState,
+  addEdge,
+} from "@xyflow/react";
+
+import "@xyflow/react/dist/style.css";
+import {
+  Database,
   Mic,
   Radio,
   Bot,
@@ -101,19 +113,7 @@ export default function Home() {
                 </div>
               </motion.div>
 
-              <motion.div
-                className="relative h-[400px] rounded-xl overflow-hidden shadow-xl w-250"
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.7, delay: 0.2 }}
-              >
-                <Image
-                  src="/screen-shot.png"
-                  alt="Voice AI Solutions"
-                  fill
-                  className="object-cover"
-                />
-              </motion.div>
+              <Flow />
             </div>
           </div>
         </section>
@@ -313,15 +313,6 @@ export default function Home() {
                   fill
                   className="object-cover"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex flex-col justify-end p-8">
-                  <h3 className="text-white text-2xl font-bold mb-2">
-                    Unified Voice Intelligence Platform
-                  </h3>
-                  <p className="text-white/90">
-                    Real-time voice analytics and conversation insights
-                    dashboard
-                  </p>
-                </div>
               </motion.div>
             </div>
           </div>
@@ -360,6 +351,290 @@ export default function Home() {
           </div>
         </div>
       </footer>
+    </div>
+  );
+}
+const initialNodes = [
+  {
+    id: "1",
+    type: "custom",
+    position: { x: 250, y: 0 },
+    data: {
+      label: "SIP Trunking",
+      description: "Call routing & signaling",
+      icon: <Phone className="h-5 w-5 text-primary" />,
+    },
+    style: { opacity: 0, transform: "translateY(-20px)" },
+  },
+  {
+    id: "2",
+    type: "custom",
+    position: { x: 100, y: 150 },
+    data: {
+      label: "FreeSWITCH",
+      description: "Voice processing",
+      icon: <Server className="h-5 w-5 text-primary" />,
+    },
+    style: { opacity: 0, transform: "translateX(-20px)" },
+  },
+  {
+    id: "3",
+    type: "custom",
+    position: { x: 400, y: 150 },
+    data: {
+      label: "Speech Recognition",
+      description: "Audio to text",
+      icon: <Mic className="h-5 w-5 text-primary" />,
+    },
+    style: { opacity: 0, transform: "translateX(20px)" },
+  },
+  {
+    id: "4",
+    type: "custom",
+    position: { x: 100, y: 300 },
+    data: {
+      label: "Knowledge Base",
+      description: "Domain-specific data",
+      icon: <Database className="h-5 w-5 text-primary" />,
+    },
+    style: { opacity: 0, transform: "translateX(-20px)" },
+  },
+  {
+    id: "5",
+    type: "custom",
+    position: { x: 400, y: 300 },
+    data: {
+      label: "Large Language Model",
+      description: "Conversation intelligence",
+      icon: <MessageSquare className="h-5 w-5 text-primary" />,
+    },
+    style: { opacity: 0, transform: "translateX(20px)" },
+  },
+  {
+    id: "6",
+    type: "custom",
+    position: { x: 250, y: 450 },
+    data: {
+      label: "Voice Assistant",
+      description: "Customer interaction",
+      icon: <Bot className="h-5 w-5 text-primary" />,
+    },
+    style: { opacity: 0, transform: "translateY(20px)" },
+  },
+];
+
+const initialEdges = [
+  {
+    id: "e1-2",
+    source: "1",
+    target: "2",
+    animated: true,
+    style: {
+      stroke: "#6366f1",
+      strokeWidth: 2,
+      opacity: 0,
+    },
+    type: "smoothstep",
+  },
+  {
+    id: "e1-3",
+    source: "1",
+    target: "3",
+    animated: true,
+    style: {
+      stroke: "#6366f1",
+      strokeWidth: 2,
+      opacity: 0,
+    },
+    type: "smoothstep",
+  },
+  {
+    id: "e2-4",
+    source: "2",
+    target: "4",
+    style: {
+      stroke: "#6366f1",
+      strokeWidth: 2,
+      opacity: 0,
+    },
+    type: "smoothstep",
+  },
+  {
+    id: "e3-5",
+    source: "3",
+    target: "5",
+    style: {
+      stroke: "#6366f1",
+      strokeWidth: 2,
+      opacity: 0,
+    },
+    type: "smoothstep",
+  },
+  {
+    id: "e4-5",
+    source: "4",
+    target: "5",
+    style: {
+      stroke: "#6366f1",
+      strokeWidth: 2,
+      opacity: 0,
+    },
+    type: "smoothstep",
+  },
+  {
+    id: "e5-6",
+    source: "5",
+    target: "6",
+    animated: true,
+    style: {
+      stroke: "#6366f1",
+      strokeWidth: 2,
+      opacity: 0,
+    },
+    type: "smoothstep",
+  },
+  {
+    id: "e2-6",
+    source: "2",
+    target: "6",
+    animated: true,
+    style: {
+      stroke: "#6366f1",
+      strokeWidth: 2,
+      opacity: 0,
+    },
+    type: "smoothstep",
+  },
+];
+
+const CustomNode = ({ data }: any) => {
+  return (
+    <div className="bg-white rounded-lg shadow-lg p-4 border-2 border-primary/30 min-w-[180px] hover:shadow-xl transition-all duration-300 hover:border-primary/60">
+      <div className="flex items-center gap-3">
+        <div className="p-2 bg-primary/10 rounded-full transition-all duration-300 hover:bg-primary/20">
+          {data.icon}
+        </div>
+        <div>
+          <div className="font-semibold text-sm">{data.label}</div>
+          <div className="text-xs text-muted-foreground">
+            {data.description}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+function Flow() {
+  const nodeTypes = {
+    custom: CustomNode,
+  };
+
+  const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
+  const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
+
+  const onConnect = useCallback(
+    (params: any) => setEdges((eds) => addEdge(params, eds)),
+    [setEdges],
+  );
+
+  // Enhanced animation sequence for nodes and edges
+  useEffect(() => {
+    // Animate nodes sequentially
+    const nodeTimers = initialNodes.map((_, index) => {
+      return setTimeout(
+        () => {
+          setNodes((nds) =>
+            nds.map((n, i) => {
+              if (i === index) {
+                return {
+                  ...n,
+                  style: {
+                    ...n.style,
+                    opacity: 1,
+                    transform: "translate(0,0)",
+                    transition: "all 0.8s ease-out",
+                  },
+                };
+              }
+              return n;
+            }),
+          );
+        },
+        300 + index * 200,
+      ); // Staggered delay
+    });
+
+    // Animate edges with delay after nodes start appearing
+    const edgeTimers = initialEdges.map((_, index) => {
+      return setTimeout(
+        () => {
+          setEdges((eds) =>
+            eds.map((e, i) => {
+              if (i === index) {
+                return {
+                  ...e,
+                  style: {
+                    ...e.style,
+                    opacity: 1,
+                    transition: "opacity 0.6s ease-in",
+                  },
+                };
+              }
+              return e;
+            }),
+          );
+        },
+        800 + index * 150,
+      ); // Start after nodes begin appearing
+    });
+
+    // Pulse animation for nodes after everything is displayed
+    const pulseTimer = setTimeout(() => {
+      const interval = setInterval(() => {
+        setNodes((nds) =>
+          nds.map((node) => ({
+            ...node,
+            style: {
+              ...node.style,
+              boxShadow:
+                (node.style as any).boxShadow ===
+                "0 0 10px rgba(99, 102, 241, 0.7)"
+                  ? "none"
+                  : "0 0 10px rgba(99, 102, 241, 0.7)",
+              transition: "box-shadow 1s ease-in-out",
+            },
+          })),
+        );
+      }, 2000);
+
+      return () => clearInterval(interval);
+    }, 2500);
+
+    return () => {
+      nodeTimers.forEach(clearTimeout);
+      edgeTimers.forEach(clearTimeout);
+      clearTimeout(pulseTimer);
+    };
+  }, [setNodes, setEdges]);
+
+  return (
+    <div className="h-[500px] w-full border rounded-xl overflow-hidden bg-slate-50 shadow-lg">
+      <ReactFlow
+        nodes={nodes}
+        edges={edges}
+        onNodesChange={onNodesChange}
+        onEdgesChange={onEdgesChange}
+        onConnect={onConnect}
+        nodeTypes={nodeTypes}
+        fitView
+        minZoom={0.5}
+        maxZoom={1.5}
+        attributionPosition="bottom-right"
+        proOptions={{ hideAttribution: true }}
+      >
+        <Background color="#ddd" gap={16} size={1} />
+      </ReactFlow>
     </div>
   );
 }
